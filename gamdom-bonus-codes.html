@@ -55,15 +55,33 @@
 <header class="site">
   <div class="bar">
     <a class="brand" href="index.html"><span class="dot"></span>GambleClear</a>
-    <nav class="mainnav">
-      <a href="gamdom-review.html">Gamdom Review</a>
-      <a href="gamdom-bonus-codes.html">Bonus Codes</a>
-      <a href="gamdom-vs-stake.html">Vs Stake</a>
-      <a href="best-crypto-casinos.html">Best Casinos</a>
-      <a href="crypto-deposit-withdrawal-guide.html">Deposits &amp; Withdrawals</a>
-      <a href="provably-fair-explained.html">Provably Fair</a>
+    <nav class="mainnav" id="mainnav">
+      <div class="navgroup">
+        <button type="button" class="navgroup-btn">Reviews</button>
+        <div class="navgroup-panel">
+          <a href="gamdom-review.html">Gamdom Review</a>
+          <a href="gamdom-bonus-codes.html">Bonus Codes</a>
+        </div>
+      </div>
+      <div class="navgroup">
+        <button type="button" class="navgroup-btn">Compare</button>
+        <div class="navgroup-panel">
+          <a href="best-crypto-casinos.html">Best Casinos</a>
+          <a href="gamdom-vs-stake.html">Gamdom vs Stake</a>
+        </div>
+      </div>
+      <div class="navgroup">
+        <button type="button" class="navgroup-btn">Guides</button>
+        <div class="navgroup-panel">
+          <a href="crypto-deposit-withdrawal-guide.html">Deposits &amp; Withdrawals</a>
+          <a href="provably-fair-explained.html">Provably Fair</a>
+        </div>
+      </div>
       <a href="about.html">About</a>
     </nav>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainnav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -154,5 +172,6 @@
     <p>GambleClear is an independent review site, not a gambling operator. 18+ (21+ where required). Gambling involves financial risk.</p>
   </div>
 </footer>
+<script src="assets/nav.js"></script>
 </body>
 </html>
