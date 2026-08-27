@@ -58,8 +58,30 @@ header.site .bar{ display:flex; align-items:center; justify-content:space-betwee
 .brand .dot{ width:9px; height:9px; border-radius:50%; background:var(--teal); display:inline-block; }
 
 nav.mainnav{ display:flex; align-items:center; gap:1.8rem; font-size:0.92rem; }
-nav.mainnav a{ color:var(--ink-dim); font-weight:600; }
-nav.mainnav a:hover{ color:var(--ink); text-decoration:none; }
+nav.mainnav > a{ color:var(--ink-dim); font-weight:600; }
+nav.mainnav > a:hover{ color:var(--ink); text-decoration:none; }
+
+/* Dropdown groups — click to open (not hover), matching Webopedia's nav pattern.
+   Click-only avoids the whole class of dead-zone/hover bugs entirely. */
+.navgroup{ position:relative; }
+.navgroup-btn{ font:inherit; font-family:var(--sans); font-weight:600; background:none; border:0; color:var(--ink-dim); cursor:pointer; display:flex; align-items:center; gap:0.35rem; padding:0.3rem 0; }
+.navgroup-btn:hover{ color:var(--ink); }
+.navgroup-btn::after{ content:''; width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-top:5px solid currentColor; opacity:0.6; margin-top:2px; transition:transform .15s ease; }
+.navgroup-btn[aria-expanded="true"]{ color:var(--teal); }
+.navgroup-btn[aria-expanded="true"]::after{ transform:rotate(180deg); }
+
+.navgroup-panel{
+  position:absolute; top:calc(100% + 0.6rem); left:50%; transform:translateX(-50%);
+  z-index:60; display:none;
+}
+.navgroup.open .navgroup-panel{ display:block; }
+.navgroup-panel-inner{
+  background:var(--bg-raised); border:1px solid var(--line); border-radius:10px; padding:0.6rem;
+  min-width:220px; display:flex; flex-direction:column; box-shadow:0 16px 34px rgba(0,0,0,0.4);
+}
+.navgroup-title{ font-family:var(--mono); font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); padding:0.3rem 0.7rem 0.5rem; border-bottom:1px solid var(--line); margin-bottom:0.3rem; }
+.navgroup-panel-inner a{ padding:0.55rem 0.7rem; border-radius:6px; color:var(--ink-dim); font-size:0.9rem; }
+.navgroup-panel-inner a:hover{ background:var(--teal-dim); color:var(--teal); text-decoration:none; }
 
 .nav-toggle{ display:none; flex-direction:column; justify-content:center; gap:5px; width:36px; height:36px; background:none; border:0; cursor:pointer; padding:0; flex-shrink:0; }
 .nav-toggle span{ display:block; width:22px; height:2px; background:var(--ink); border-radius:2px; }
@@ -173,7 +195,15 @@ footer.site p{ font-family:var(--sans); font-size:0.78rem; color:var(--ink-faint
     padding:0.6rem 1.5rem 1.2rem; box-shadow:0 14px 28px rgba(0,0,0,0.35);
   }
   nav.mainnav.open{ display:flex; }
-  nav.mainnav a{ padding:0.7rem 0; border-bottom:1px solid var(--line); }
+  nav.mainnav > a{ padding:0.7rem 0; border-bottom:1px solid var(--line); }
+  .navgroup-btn{ width:100%; justify-content:space-between; padding:0.7rem 0; border-bottom:1px solid var(--line); }
+  .navgroup-btn::after{ margin-top:0; }
+  .navgroup-btn[aria-expanded="true"]::after{ transform:rotate(180deg); }
+  .navgroup-panel{ position:static; transform:none; }
+  .navgroup-panel-inner{
+    background:none; border:0; box-shadow:none; padding:0.2rem 0 0.4rem 0.8rem; min-width:0;
+  }
+  .navgroup-title{ display:none; }
 }
 
 @media (max-width:640px){
